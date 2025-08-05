@@ -1,0 +1,2 @@
+source C:/Projects/esp/OTA_DISHWASHER/build/bootloader/gdbinit/symbols
+source C:/Projects/esp/OTA_DISHWASHER/build/bootloader/gdbinit/connect
