@@ -6,22 +6,6 @@
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include "esp_netif.h"
-#include "esp_https_ota.h"
-#include "esp_err.h"
-#include "esp_crt_bundle.h"
-#include <string.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/event_groups.h"
-#include "esp_wifi.h"
-#include "esp_event.h"
-#include "esp_log.h"
-#include "nvs_flash.h"
-#include "esp_netif.h"
-
-#include "dishwasher_programs.h"
-#include "local_wifi.c"
-#include "local_ota.c"
-
 
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_TIMEOUT pdMS_TO_TICKS(5000)  // 5 seconds to try
@@ -93,4 +77,3 @@ void wifi_init_sta(void) {
     }
     ESP_LOGI("Wifi","Wifi connection ended");
 }
-static EventGroupHandle_t wifi_event_group;
