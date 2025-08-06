@@ -9,19 +9,26 @@
 #include "esp_https_ota.h"
 #include "esp_err.h"
 #include "esp_crt_bundle.h"
-// ---- Update with your firmware URL ----
-#define FIRMWARE_URL "https://house.sjcnu.com/esp32/firmware/ota-dishwasher.bin"
+#include <string.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/event_groups.h"
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "esp_log.h"
+#include "nvs_flash.h"
+#include "esp_netif.h"
 
-#define WIFI_SSID "House619"
-#define WIFI_PASS "Wifi6860"
-
+include 
 #define WIFI_CONNECTED_BIT BIT0
+#define WIFI_FAIL_TIMEOUT pdMS_TO_TICKS(5000)  // 5 seconds to try
+
+#define WIFI_SSID_REAL "House619"
+#define WIFI_PASS_REAL "Wifi6860"
+#define WIFI_SSID_WOKWI "Wokwi-GUEST"
+#define WIFI_PASS_WOKWI ""
 
 static EventGroupHandle_t wifi_event_group;
-static const char *TAG = "OTA_WIFI";
-
-// Certificate from server (replace with actual or NULL to disable SSL check)
-extern const uint8_t server_cert_pem_start[] asm("_binary_server_cert_pem_start");
+static const char *TAG = "WIFI_INIT";
 
 static void wifi_event_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data) {
@@ -37,7 +44,32 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
     }
 }
 
-static void wifi_init_sta(void) {
+static bool try_connect_wifi(const char *ssid, const char *pass) {
+    wifi_config_t wifi_config = {
+        .sta = {
+            .threshold.authmode = WIFI_AUTH_OPEN,
+        },
+    };
+    strncpy((char *)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid));
+    strncpy((char *)wifi_config.sta.password, pass, sizeof(wifi_config.sta.password));
+
+    esp_wifi_stop();
+    esp_wifi_set_mode(WIFI_MODE_STA);
+    esp_wifi_set_config(WIFI_IF_STA, &wifi_config);
+    esp_wifi_start();
+
+    ESP_LOGI(TAG, "Connecting to SSID: %s", ssid);
+    EventBits_t bits = xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdTRUE, WIFI_FAIL_TIMEOUT);
+
+    if (bits & WIFI_CONNECTED_BIT) {
+        ESP_LOGI(TAG, "Connected to WiFi: %s", ssid);
+        return true;
+    } else {
+        ESP_LOGW(TAG, "Connection to SSID %s failed", ssid);
+        return false;
+    }
+}
+void wifi_init_sta(void) {
     wifi_event_group = xEventGroupCreate();
 
     esp_netif_init();
@@ -50,22 +82,19 @@ static void wifi_init_sta(void) {
     esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL, NULL);
     esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &wifi_event_handler, NULL, NULL);
 
-    wifi_config_t wifi_config = {
-        .sta = {
-            .ssid = WIFI_SSID,
-            .password = WIFI_PASS,
-            .threshold.authmode = WIFI_AUTH_OPEN,
-        },
-    };
-
-    esp_wifi_set_mode(WIFI_MODE_STA);
-    esp_wifi_set_config(WIFI_IF_STA, &wifi_config);
-    esp_wifi_start();
-
-    ESP_LOGI(TAG, "Connecting to WiFi...");
-    xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
-    ESP_LOGI(TAG, "Connected to WiFi");
+    // First try real WiFi
+    if (!try_connect_wifi(WIFI_SSID_REAL, WIFI_PASS_REAL)) {
+        ESP_LOGW(TAG, "Falling back to Wokwi network...");
+        try_connect_wifi(WIFI_SSID_WOKWI, WIFI_PASS_WOKWI);
+    }
 }
+
+// ---- Update with your firmware URL ----
+#define FIRMWARE_URL "https://house.sjcnu.com/esp32/firmware/ota-dishwasher.bin"
+
+#define WIFI_CONNECTED_BIT BIT0
+
+static EventGroupHandle_t wifi_event_group;
 
 void app_main(void) {
     ESP_ERROR_CHECK(nvs_flash_init());

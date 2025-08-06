@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "ota-dishwasher",
-    "project_version":    "6eec50b-dirty",
+    "project_version":    "34f5070-dirty",
     "project_path":       "C:/Projects/esp/OTA_DISHWASHER",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.5",
     "build_dir":          "C:/Projects/esp/OTA_DISHWASHER/build",
