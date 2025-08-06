@@ -70,7 +70,6 @@ static const ProgramLineStruct NormalProgramLines[] = {
     {"cool/vent",      29*MIN,    0,        0,      0,       HEAT                    },
     {"fini",           0,         0,        0,      0,       0                       }
 };
-
 // Test program: all times 30 seconds, temps copied from Normal
 static const ProgramLineStruct TestProgramLines[] = {
     {"init",           1,         0,        0,      0,       0                      },
