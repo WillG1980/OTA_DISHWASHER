@@ -1,4 +1,3 @@
-#include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
 #include "esp_wifi.h"
@@ -8,14 +7,18 @@
 #include "esp_netif.h"
 
 #define WIFI_CONNECTED_BIT BIT0
-#define WIFI_FAIL_TIMEOUT pdMS_TO_TICKS(5000)  // 5 seconds to try
+#define WIFI_FAIL_TIMEOUT pdMS_TO_TICKS(5000)  // 5 seconds
 
 #define WIFI_SSID_REAL "House619"
 #define WIFI_PASS_REAL "Wifi6860"
 #define WIFI_SSID_WOKWI "Wokwi-GUEST"
 #define WIFI_PASS_WOKWI ""
 
+extern const char *TAG;
+
 static EventGroupHandle_t wifi_event_group;
+static bool using_simulator = false;
+
 static void wifi_event_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data) {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
@@ -29,6 +32,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
     }
 }
+
 static bool try_connect_wifi(const char *ssid, const char *pass) {
     wifi_config_t wifi_config = {
         .sta = {
@@ -37,12 +41,15 @@ static bool try_connect_wifi(const char *ssid, const char *pass) {
     };
     strncpy((char *)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid));
     strncpy((char *)wifi_config.sta.password, pass, sizeof(wifi_config.sta.password));
+
     esp_wifi_stop();
     esp_wifi_set_mode(WIFI_MODE_STA);
     esp_wifi_set_config(WIFI_IF_STA, &wifi_config);
     esp_wifi_start();
+
     ESP_LOGI(TAG, "Connecting to SSID: %s", ssid);
     EventBits_t bits = xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdTRUE, WIFI_FAIL_TIMEOUT);
+
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG, "Connected to WiFi: %s", ssid);
         return true;
@@ -51,6 +58,7 @@ static bool try_connect_wifi(const char *ssid, const char *pass) {
         return false;
     }
 }
+
 void wifi_init_sta(void) {
     wifi_event_group = xEventGroupCreate();
 
@@ -64,10 +72,23 @@ void wifi_init_sta(void) {
     esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL, NULL);
     esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &wifi_event_handler, NULL, NULL);
 
-    // First try real WiFi
-    if (!try_connect_wifi(WIFI_SSID_REAL, WIFI_PASS_REAL)) {
-        ESP_LOGW(TAG, "Falling back to Wokwi network...");
-        try_connect_wifi(WIFI_SSID_WOKWI, WIFI_PASS_WOKWI);
+    if (try_connect_wifi(WIFI_SSID_REAL, WIFI_PASS_REAL)) {
+        using_simulator = false;
+    } else if (try_connect_wifi(WIFI_SSID_WOKWI, WIFI_PASS_WOKWI)) {
+        using_simulator = true;
+    } else {
+        using_simulator = false;  // fallback completely failed
     }
-    ESP_LOGI("Wifi","Wifi connection ended");
+
+    ESP_LOGI(TAG, "WiFi init completed");
+}
+
+bool is_connected(void) {
+    wifi_ap_record_t ap_info;
+    esp_err_t err = esp_wifi_sta_get_ap_info(&ap_info);
+    return (err == ESP_OK);
+}
+
+bool is_simulator(void) {
+    return using_simulator;
 }

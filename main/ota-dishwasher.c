@@ -17,15 +17,11 @@
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include "esp_netif.h"
-
-static const char FIRMWARE_URL "https://house.sjcnu.com/esp32/firmware/ota-dishwasher.bin"
-static const char TAG "Dishwasher"
-
-
+#include "driver/gpio.h"
 
 #include "dishwasher_programs.h"
 #include "local_wifi.c"
-//#include "local_ota.c"
+#include "local_ota.c"
 
 // ---- Update with your firmware URL ----
 void app_main(void) {

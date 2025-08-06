@@ -25,6 +25,9 @@
 
 #define NUM_DEVICES   8
 
+static const char *FIRMWARE_URL="https://house.sjcnu.com/esp32/firmware/ota-dishwasher.bin";
+static const char *TAG="Dishwasher";
+
 typedef struct {
     const char *state_name;
     uint32_t    min_time;   // milliseconds

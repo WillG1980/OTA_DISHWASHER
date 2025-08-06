@@ -1,29 +1,14 @@
 #include <string.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/event_groups.h"
-#include "esp_wifi.h"
-#include "esp_event.h"
-#include "esp_log.h"
-#include "nvs_flash.h"
-#include "esp_netif.h"
 #include "esp_https_ota.h"
 #include "esp_err.h"
-#include "esp_crt_bundle.h"
-#include <string.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/event_groups.h"
-#include "esp_wifi.h"
-#include "esp_event.h"
 #include "esp_log.h"
-#include "nvs_flash.h"
-#include "esp_netif.h"
+#include "esp_crt_bundle.h"
 
-#include "dishwasher_programs.h"
-#include "local_wifi.c"
-#include "local_ota.c"
+extern const char *TAG;
+extern const char *FIRMWARE_URL;
 
-void _get_ota(){
-  
+
+void _get_ota() {
     esp_http_client_config_t config = {
         .url = FIRMWARE_URL,
         .crt_bundle_attach = esp_crt_bundle_attach
@@ -38,8 +23,8 @@ void _get_ota(){
 
     if (ret == ESP_OK) {
         ESP_LOGI(TAG, "OTA update successful. Rebooting...");
-        //esp_restart();
+        // esp_restart(); // Uncomment this in production
     } else {
         ESP_LOGE(TAG, "OTA update failed: %s", esp_err_to_name(ret));
-    }  
-};
+    }
+}
