@@ -19,7 +19,6 @@ if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "")
   "ota-dishwasher.bin"
   "ota-dishwasher.map"
   "project_elf_src_esp32.c"
-  "server_cert.pem.S"
   "x509_crt_bundle.S"
   )
 endif()
