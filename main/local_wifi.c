@@ -16,8 +16,6 @@
 #define WIFI_PASS_WOKWI ""
 
 static EventGroupHandle_t wifi_event_group;
-static const char *TAG = "WIFI_INIT";
-
 static void wifi_event_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data) {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
@@ -31,7 +29,6 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
     }
 }
-
 static bool try_connect_wifi(const char *ssid, const char *pass) {
     wifi_config_t wifi_config = {
         .sta = {
@@ -40,15 +37,12 @@ static bool try_connect_wifi(const char *ssid, const char *pass) {
     };
     strncpy((char *)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid));
     strncpy((char *)wifi_config.sta.password, pass, sizeof(wifi_config.sta.password));
-
     esp_wifi_stop();
     esp_wifi_set_mode(WIFI_MODE_STA);
     esp_wifi_set_config(WIFI_IF_STA, &wifi_config);
     esp_wifi_start();
-
     ESP_LOGI(TAG, "Connecting to SSID: %s", ssid);
     EventBits_t bits = xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdTRUE, WIFI_FAIL_TIMEOUT);
-
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG, "Connected to WiFi: %s", ssid);
         return true;
