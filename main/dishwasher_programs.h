@@ -6,7 +6,7 @@
 #include <stddef.h>             // For size_t
 
 #ifndef APP_VERSION
-#define APP_VERSION "@VERSION@"
+  #define APP_VERSION VERSION
 #endif
 
 #ifndef BIT64
