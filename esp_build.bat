@@ -9,6 +9,7 @@ git diff --cached --quiet || (
 REM Get the version as the commit count
 echo get new git version
 FOR /F %%i IN ('git rev-list --count HEAD') DO SET VERSION=%%i
+echo Determined version to be: %VERSION%
 REM Replace placeholder in version.h.in and write to version.h
 REM echo set version # in string
 REM powershell -Command "(Get-Content version.h.in) -replace '@VERSION@', '%VERSION%' | Set-Content version.h"
