@@ -17,14 +17,14 @@
 
 // ---- Update with your firmware URL ----
 void app_main(void) {
-    ESP_LOGI("Tag","Test % %s",APP_VERSION,FIRMWARE_URL);
+    ESP_LOGI("Tag","Version: %s Firmware Update:%s",APP_VERSION,FIRMWARE_URL);
     //ESP_ERROR_CHECK(nvs_flash_init());
     //wifi_init_sta();
-        printf( "Total program count: %d",NUM_PROGRAMS);
+        printf( "\nTotal program count: %d",NUM_PROGRAMS);
 
     for (int i=0;i<NUM_PROGRAMS;i++){
         Program_Entry Program=Programs[i];
-        printf("Program Name: %s",Program.name);
-    }
+        printf("\nProgram Name: %s",Program.name);
+    }  
 
 }
