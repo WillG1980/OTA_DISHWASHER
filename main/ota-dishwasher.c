@@ -25,9 +25,12 @@
 
 // ---- Update with your firmware URL ----
 void app_main(void) {
-    ESP_ERROR_CHECK(nvs_flash_init());
-    wifi_init_sta();
+    //ESP_ERROR_CHECK(nvs_flash_init());
+    //wifi_init_sta();
 
-    
+    for (int i=0;i<NUM_PROGRAMS;i++){
+        Program_Entry Program=Programs[i];
+        ESP_LOGI(TAG,"Program Name: %s",Program.name);
+    }
 
 }

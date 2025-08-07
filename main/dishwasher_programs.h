@@ -43,8 +43,8 @@ typedef struct {
 } ProgramLineStruct;
 
 typedef struct {
-    const char *program_name;
-    const ProgramLineStruct *program_lines;
+    const char *name;
+    const ProgramLineStruct *lines;
     size_t num_lines;
 } Program_Entry;
 
@@ -108,7 +108,6 @@ static const ProgramLineStruct TestProgramLines[] = {
     {"cool/vent",      29*MIN,    0,        0,      0,       HEAT                    },
     {"fini",           0,         0,        0,      0,       0                       }
 };
-
 // Hi-Temp program: same times as Normal, but all wash temps set to 160
 static const ProgramLineStruct HiTempProgramLines[] = {
     {"init",           1,         0,        0,      0,       0                      },
