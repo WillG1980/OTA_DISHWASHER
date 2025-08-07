@@ -3,4 +3,23 @@
 cmake_minimum_required(VERSION 3.16)
 add_compile_options(-Wno-missing-field-initializers)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(ota-dishwasher)
+
+# Get git tag
+execute_process(
+  COMMAND git describe --tags --always
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_TAG
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+# Set project name
+set(PROJECT_NAME_STR "ota-dishwasher")
+
+# Pass to compiler
+add_compile_definitions(
+  VERSION="${GIT_TAG}"
+  PROJECT_NAME="${PROJECT_NAME_STR}"
+)
+
+project(${PROJECT_NAME_STR})
+

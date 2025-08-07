@@ -5,6 +5,10 @@
 #include <driver/gpio.h>        // For GPIO_NUM_X definitions
 #include <stddef.h>             // For size_t
 
+#ifndef APP_VERSION
+#define APP_VERSION "@VERSION@"
+#endif
+
 #ifndef BIT64
 #define BIT64(n) (1ULL << (n))
 #endif
@@ -20,13 +24,14 @@
 
 #define NUM_PROGRAMS 3
 
-#define MIN           (60 * 1000ULL)  // 60 seconds in milliseconds
-#define SEC           (1000ULL)       // 1 second in milliseconds
+#define SEC           (1ULL)       // 1 second in milliseconds
+#define MIN           (60 * SEC)  // 60 seconds in milliseconds
 
 #define NUM_DEVICES   8
 
-static const char *FIRMWARE_URL="https://house.sjcnu.com/esp32/firmware/ota-dishwasher.bin";
-static const char *TAG="Dishwasher";
+static const char *TAG=PROJECT_NAME;
+static const char *FIRMWARE_URL="https://house.sjcnu.com/esp32/firmware/" VERSION "/" PROJECT_NAME ".bin";
+
 
 typedef struct {
     const char *state_name;
