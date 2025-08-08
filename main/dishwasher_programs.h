@@ -167,11 +167,4 @@ typedef struct {
   char statusstring[512]; // OPTIMIZATION: Fixed size buffer
   char IPAddress[16];     // OPTIMIZATION: Fixed size for IP
 } status_struct;
-void init_status(){
-
-}
-
-
-
-
 #endif

@@ -41,9 +41,7 @@ void monitor_task_buttons(){}
 void monitor_task_temperature(){}
 void update_published_status(){}
 
-typedef struct {
-    
-} status_struct;
+
 void init_status(){
     ActiveStatus.CurrentPower=0;
     ActiveStatus.CurrentTemp=0;
