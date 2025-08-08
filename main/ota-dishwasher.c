@@ -57,7 +57,8 @@ void update_published_status(){
 void init_status(){
     ActiveStatus.CurrentPower=0;
     ActiveStatus.CurrentTemp=0;
-    setCharArray(ActiveStatus.ActiveState,"Off");
+    setCharArray(ActiveStatus.name_cycle,"Off");
+    setCharArray(ActiveStatus.name_step,"Off");
     setCharArray(ActiveStatus.IPAddress,"255.255.255.255");
 
    ActiveStatus.time_full_start=0; // time it started

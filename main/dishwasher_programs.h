@@ -34,8 +34,8 @@ static const char *FIRMWARE_URL="https://house.sjcnu.com/esp32/firmware/" OTA_VE
 
 
 typedef struct {
-    const char *cycle_name;
-    const char *step_name;
+    const char *name_cycle;
+    const char *name_step;
     uint32_t    min_time;   // milliseconds
     uint32_t    max_time;   // milliseconds
     int         min_temp;
@@ -108,7 +108,7 @@ static const ProgramLineStruct TestProgramLines[] = {
 
     {"cool","vent",      29*MIN,    0,        0,      0,       HEAT                    },
     {"fini","clean",           0,         0,        0,      0,       0                       }
-    
+
 };
 // Hi-Temp program: same times as Normal, but all wash temps set to 160
 static const ProgramLineStruct HiTempProgramLines[] = {
