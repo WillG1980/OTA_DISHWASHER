@@ -95,6 +95,10 @@ void run_program() {
 
     printf("Program Name: %s\n",ActiveStatus.Program);
   }
+
+  while(1){
+    vTaskDelay(pdMS_TO_TICKS(60*60*1000));
+  }
 };
 
 void app_main(void) {
