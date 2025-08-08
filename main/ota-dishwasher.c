@@ -11,13 +11,13 @@
 #include "nvs_flash.h"
 #include <string.h>
 
-
 #include "analog.h"
 #include "buttons.h"
 #include "dishwasher_programs.h"
 #include "local_ota.c"
-#include "local_wifi.c"
 #include "local_time.h"
+#include "local_wifi.c"
+
 
 #define __TAG__ "OTA_DISHWASHER"
 
@@ -56,17 +56,17 @@ void _init_setup() {
 void monitor_task_buttons() {}
 void monitor_task_temperature() {}
 void update_published_status() {
-  while(true){
+  while (true) {
     printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %lld "
-         "ETA: %lld \nCycle time: %lld Cycle ETA:%lld \nIP: %s",
-         ActiveStatus.Cycle, ActiveStatus.Step, ActiveStatus.CurrentTemp,
-         ActiveStatus.time_elapsed,
+           "ETA: %lld \nCycle time: %lld Cycle ETA:%lld \nIP: %s",
+           ActiveStatus.Cycle, ActiveStatus.Step, ActiveStatus.CurrentTemp,
+           ActiveStatus.time_elapsed,
 
-         ActiveStatus.time_full_total, ActiveStatus.time_cycle_total,
-         ActiveStatus.time_cycle_total - ActiveStatus.time_elapsed,
-         ActiveStatus.IPAddress);
-vTaskDelay(pdMS_TO_TICKS(30000));
-}
+           ActiveStatus.time_full_total, ActiveStatus.time_cycle_total,
+           ActiveStatus.time_cycle_total - ActiveStatus.time_elapsed,
+           ActiveStatus.IPAddress);
+    vTaskDelay(pdMS_TO_TICKS(30000));
+  }
 }
 
 void init_status() {
@@ -87,19 +87,22 @@ void run_program() {
   for (int i = 0; i < NUM_PROGRAMS; i++) {
     Program_Entry Program = Programs[i];
     if (strcmp(Program.name, ActiveStatus.Program) == 0) {
-      _LOG_I("Found Program %s, preparing to run ",Program.name);
+      _LOG_I("Found Program %s, preparing to run ", Program.name);
       break;
     } else {
       _LOG_I("Program Name: %s", Program.name);
     }
 
-    printf("Program Name: %s\n",ActiveStatus.Program);
+    printf("Program Name: %s\n", ActiveStatus.Program);
   }
-
-  while(1){
-    vTaskDelay(pdMS_TO_TICKS(60*60*1000));
+  for (ProgramLineStruct Line : Program) {
   };
+
+while (1) {
+  vTaskDelay(pdMS_TO_TICKS(60 * 60 * 1000));
 };
+}
+;
 
 void app_main(void) {
   ESP_ERROR_CHECK(nvs_flash_init());
@@ -114,9 +117,9 @@ void app_main(void) {
     printf("Program Name: %s\n", Program.name);
   }
 
- // run_program("Test");
-  setCharArray(ActiveStatus.Program,"Test");
-  xTaskCreate(run_program, "Run_Program", 2048, NULL, 5,
-              NULL);
-              while(1);
+  // run_program("Test");
+  setCharArray(ActiveStatus.Program, "Test");
+  xTaskCreate(run_program, "Run_Program", 2048, NULL, 5, NULL);
+  while (1)
+    ;
 }
