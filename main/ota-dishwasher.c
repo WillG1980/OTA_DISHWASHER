@@ -110,5 +110,9 @@ void app_main(void) {
     printf("Program Name: %s\n", Program.name);
   }
 
-  run_program("Test");
+ // run_program("Test");
+  setCharArray(ActiveStatus.Program,"Test");
+  xTaskCreate(run_program, "Run_Program", 2048, NULL, 5,
+              NULL);
+              while(1);
 }

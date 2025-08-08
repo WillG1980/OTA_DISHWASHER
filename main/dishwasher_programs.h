@@ -184,5 +184,6 @@ typedef struct {
   char Step[10];
   char statusstring[512]; // OPTIMIZATION: Fixed size buffer
   char IPAddress[16];     // OPTIMIZATION: Fixed size for IP
+  char Program[10];
 } status_struct;
 #endif
