@@ -56,7 +56,8 @@ void _init_setup() {
 void monitor_task_buttons() {}
 void monitor_task_temperature() {}
 void update_published_status() {
-  printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %lld "
+  while(true){
+    printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %lld "
          "ETA: %lld \nCycle time: %lld Cycle ETA:%lld \nIP: %s",
          ActiveStatus.Cycle, ActiveStatus.Step, ActiveStatus.CurrentTemp,
          ActiveStatus.time_elapsed,
@@ -64,6 +65,8 @@ void update_published_status() {
          ActiveStatus.time_full_total, ActiveStatus.time_cycle_total,
          ActiveStatus.time_cycle_total - ActiveStatus.time_elapsed,
          ActiveStatus.IPAddress);
+vTaskDelay(pdMS_TO_TICKS(30000));
+}
 }
 
 void init_status() {
