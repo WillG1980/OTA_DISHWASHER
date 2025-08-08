@@ -32,7 +32,7 @@ void _init_setup(){
     init_adc();
     init_status();
     //setup background monitoring tasks
-    xTaskCreate(monitor_task_buttons, "monitor_task_buttons", 2048, NULL, 5, NULL); // monitor buttons, set flags as needed
+    xTaskCreate(monitor_task_button, "monitor_task_buttons", 2048, NULL, 5, NULL); // monitor buttons, set flags as needed
     xTaskCreate(monitor_task_temperature, "monitor_task_temperature", 2048, NULL, 5, NULL); //monitor temperatures
     xTaskCreate(update_published_status, "update_published_status", 2048, NULL, 5, NULL); //publish status
     //xTaskCreate(sample_analog_inputs_task, "sample_analog_inputs_task", 4096, NULL, 5, NULL);

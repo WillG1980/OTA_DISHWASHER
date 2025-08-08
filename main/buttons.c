@@ -8,6 +8,17 @@
 #define GND_GPIO GPIO_NUM_17
 extern const char *__TAG__;
 
+button_t Buttons={
+{false,GPIO_NUM_16,"Start"},
+{false,GPIO_NUM_17,"Cancel"}
+}
+led_t Leds={
+  {false,GPIO_NUM_18,"Clean Identifier"},
+  {false,GPIO_NUM_19,"Status Identifier"}
+}
+
+
+
 button_t buttons[1];
 
 void init_switchesandleds() {
@@ -38,7 +49,7 @@ void init_switchesandleds() {
   gpio_set_level(GND_GPIO, 0); // Provide GND ref
 }
 
-void button_monitor_task(void *arg) {
+void monitor_task_button(void *arg) {
   const TickType_t debounce_ticks = pdMS_TO_TICKS(50);
   int last_state = 1;
   TickType_t last_change_time = 0;

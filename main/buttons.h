@@ -4,12 +4,20 @@
 #include "driver/gpio.h"
 
 typedef struct {
-  int state;
+  int State;
+  gpio_num_t Pin;
+  char name[25];
 } button_t;
+
+typedef struct {
+  int State;
+  gpio_num_t Pin;
+  char name[25];
+} led_t;
 
 extern button_t buttons[];
 void init_switchesandleds();
-void button_monitor_task(void *arg);
+void monitor_task_button(void *arg);
 
 #define BUTTON_PRESSED 1
 #define BUTTON_RELEASED 0
