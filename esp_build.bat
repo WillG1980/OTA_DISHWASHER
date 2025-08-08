@@ -13,7 +13,7 @@ echo Determined version to be: %VERSION%
 REM Replace placeholder in version.h.in and write to version.h
 REM echo set version # in string
 REM powershell -Command "(Get-Content version.h.in) -replace '@VERSION@', '%VERSION%' | Set-Content version.h"
-idf.py 
+idf.py build
 if errorlevel 1 (
     echo Error detected, exiting...
     exit /b 1
