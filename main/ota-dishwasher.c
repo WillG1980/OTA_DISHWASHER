@@ -93,7 +93,7 @@ void run_program() {
       _LOG_I("Program Name: %s", Program.name);
     }
 
-    printf("Program Name: %s\n", Program.name);
+    printf("Program Name: %s\n",ActiveStatus.Program);
   }
 };
 
