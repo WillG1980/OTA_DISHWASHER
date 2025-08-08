@@ -17,7 +17,7 @@
 
 // ---- Update with your firmware URL ----
 void app_main(void) {
-    ESP_LOGI("Tag","Version: %s Firmware Update:%s\n",APP_VERSION,FIRMWARE_URL);
+    ESP_LOGI("Dishwasher","Version: %s \nFirmware Update:%s\n",VERSION,FIRMWARE_URL);
     ESP_ERROR_CHECK(nvs_flash_init());
     wifi_init_sta();
         printf( "\nTotal program count: %d\n",NUM_PROGRAMS);
