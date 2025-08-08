@@ -108,6 +108,7 @@ static const ProgramLineStruct TestProgramLines[] = {
 
     {"cool","vent",      29*MIN,    0,        0,      0,       HEAT                    },
     {"fini","clean",           0,         0,        0,      0,       0                       }
+    
 };
 // Hi-Temp program: same times as Normal, but all wash temps set to 160
 static const ProgramLineStruct HiTempProgramLines[] = {
