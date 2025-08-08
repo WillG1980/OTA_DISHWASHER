@@ -39,7 +39,7 @@ void _init_setup(){
 void monitor_task_buttons(){}
 void monitor_task_temperature(){}
 void update_published_status(){
-    printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %d ETA: %d \nCycle time: %d Cycle ETA:%d \nIP: %s",
+    printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %lld ETA: %lld \nCycle time: %lld Cycle ETA:%d \nIP: %s",
     ActiveStatus.Cycle,
     ActiveStatus.Step,
     ActiveStatus.CurrentTemp,
