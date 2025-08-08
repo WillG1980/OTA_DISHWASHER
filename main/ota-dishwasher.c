@@ -40,9 +40,8 @@ void monitor_task_buttons(){}
 void monitor_task_temperature(){}
 void update_published_status(){
     printf("Status update: State: %s/%s Temperature: %d Elapsed Time: %d ETA: %d Cycle time: %d Cycle ETA:%d",
-    ActiveStatus.cycle_name,
-    ActiveStatus.step_name,
-    ActiveStatus.ActiveState,
+    ActiveStatus.Cycle,
+    ActiveStatus.Step,
     ActiveStatus.CurrentTemp,
     ActiveStatus.time_elapsed,
     ActiveStatus.time_full_total,
