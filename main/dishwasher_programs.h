@@ -155,10 +155,10 @@ static const ProgramLineStruct HiTempProgramLines[] = {
     {"fini", "clean", 0, 0, 0, 0, 0}};
 
 static const Program_Entry Programs[NUM_PROGRAMS] = {
-    {"Normal", NormalProgramLines,
-     sizeof(NormalProgramLines) / sizeof(NormalProgramLines[0])},
     {"Test", TestProgramLines,
      sizeof(TestProgramLines) / sizeof(TestProgramLines[0])},
+    {"Normal", NormalProgramLines,
+     sizeof(NormalProgramLines) / sizeof(NormalProgramLines[0])},
     {"Hi-Temp", HiTempProgramLines,
      sizeof(HiTempProgramLines) / sizeof(HiTempProgramLines[0])}};
 
