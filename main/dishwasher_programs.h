@@ -51,7 +51,7 @@ typedef struct {
 
 // Normal program
 static const ProgramLineStruct NormalProgramLines[] = {
-    {"init","setup"           1,         0,        0,      0,       0                      },
+    {"init","setup",          1,         0,        0,      0,       0                      },
 
     {"Prep","fill",      3*MIN,     0,        0,      0,       INLET                   },
     {"Prep","Spray",     5*MIN,     0,        0,      0,       SPRAY                   },
@@ -77,11 +77,11 @@ static const ProgramLineStruct NormalProgramLines[] = {
     {"rinse-3","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
     {"cool","vent",      29*MIN,    0,        0,      0,       HEAT                    },
-    {"fini","clean"           0,         0,        0,      0,       0                       }
+    {"fini","clean",           0,         0,        0,      0,       0                       }
 };
 // Test program: all times 30 seconds, temps copied from Normal
 static const ProgramLineStruct TestProgramLines[] = {
-    {"init","setup"           1,         0,        0,      0,       0                      },
+    {"init","setup",          1,         0,        0,      0,       0                      },
 
     {"Prep","fill",      30*SEC,    0,        0,      0,       INLET                   },
     {"Prep","Spray",     30*SEC,    30*SEC,   130,    130,     SPRAY                   },
@@ -107,11 +107,11 @@ static const ProgramLineStruct TestProgramLines[] = {
     {"rinse-3","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
     {"cool","vent",      29*MIN,    0,        0,      0,       HEAT                    },
-    {"fini","clean"           0,         0,        0,      0,       0                       }
+    {"fini","clean",           0,         0,        0,      0,       0                       }
 };
 // Hi-Temp program: same times as Normal, but all wash temps set to 160
 static const ProgramLineStruct HiTempProgramLines[] = {
-    {"init","setup"           1,         0,        0,      0,       0                      },
+    {"init","setup",          1,         0,        0,      0,       0                      },
 
     {"Prep","fill",      3*MIN,     0,        0,      0,       INLET                   },
     {"Prep","Spray",     5*MIN,     0,        0,      0,       SPRAY                   },
@@ -137,7 +137,7 @@ static const ProgramLineStruct HiTempProgramLines[] = {
     {"rinse-3","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
     {"cool","vent",      29*MIN,    0,        140,      140,       HEAT                    },
-    {"fini","clean"           0,         0,        0,      0,       0                       }
+    {"fini","clean",           0,         0,        0,      0,       0                       }
 };
 
 static const Program_Entry Programs[NUM_PROGRAMS] = {
