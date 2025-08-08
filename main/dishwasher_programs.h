@@ -145,7 +145,12 @@ static const Program_Entry Programs[NUM_PROGRAMS] = {
     {"Hi-Temp",HiTempProgramLines, sizeof(HiTempProgramLines) / sizeof(HiTempProgramLines[0])}
 };
 
-
+#define setCharArray(target, value) \
+    do { \
+        strncpy((target), (value), sizeof(target) - 1); \
+        (target)[sizeof(target) - 1] = '\0'; \
+    } while (0)
+    
 typedef struct {
   int CurrentTemp;
   int CurrentPower;
@@ -163,7 +168,7 @@ typedef struct {
   char IPAddress[16];     // OPTIMIZATION: Fixed size for IP
 } status_struct;
 void init_status(){
-    
+
 }
 
 
