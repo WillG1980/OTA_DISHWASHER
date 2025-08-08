@@ -39,10 +39,11 @@ void _init_setup(){
 void monitor_task_buttons(){}
 void monitor_task_temperature(){}
 void update_published_status(){
-    printf("Status update: State: %s/%s Temperature: %d Elapsed Time: %d ETA: %d Cycle time: %d Cycle ETA:%d",
+    printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %d ETA: %d \nCycle time: %d Cycle ETA:%d \nIP: %s",
     ActiveStatus.Cycle,
     ActiveStatus.Step,
     ActiveStatus.CurrentTemp,
+
     ActiveStatus.time_elapsed,
     ActiveStatus.time_full_total,
     ActiveStatus.time_cycle_total,
@@ -56,8 +57,8 @@ void update_published_status(){
 void init_status(){
     ActiveStatus.CurrentPower=0;
     ActiveStatus.CurrentTemp=0;
-    setCharArray(ActiveStatus.name_cycle,"Off");
-    setCharArray(ActiveStatus.name_step,"Off");
+    setCharArray(ActiveStatus.Cycle,"Off");
+    setCharArray(ActiveStatus.Step,"Off");
     setCharArray(ActiveStatus.IPAddress,"255.255.255.255");
 
    ActiveStatus.time_full_start=0; // time it started
