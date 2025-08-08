@@ -41,7 +41,7 @@ void _init_setup(){
 
     for (int t=60;t>0;t--){
         _LOG_I("Waiting for wifi, %d seconds remaining",t);
-        if(is_connected()){  break;  }
+        if(is_connected()){  _LOG_I("Connected to Wifi");break;  }
         vTaskDelay(pdMS_TO_TICKS(1000)) ;
     }
     };
