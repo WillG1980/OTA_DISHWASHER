@@ -98,7 +98,7 @@ void run_program() {
 
   while(1){
     vTaskDelay(pdMS_TO_TICKS(60*60*1000));
-  }
+  };
 };
 
 void app_main(void) {
