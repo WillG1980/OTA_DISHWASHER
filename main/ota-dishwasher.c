@@ -17,6 +17,9 @@
 #include "buttons.h"
 #include "analog.h"
 
+
+#define __TAG__ OTA_DISHWASHER
+
 //prototyping functions
 status_struct ActiveStatus;
 
