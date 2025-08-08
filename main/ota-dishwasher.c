@@ -16,6 +16,12 @@
 #include "local_ota.c"
 #include "buttons.h"
 #include "analog.h"
+
+//prototyping functions
+void monitor_task_buttons();
+void monitor_task_temperature();
+void update_published_status();
+
 void _init_setup(){
     wifi_init_sta();
     init_switchesandleds();
