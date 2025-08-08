@@ -165,7 +165,8 @@ typedef struct {
   int64_t time_total;
   int64_t time_elapsed;
   int64_t time_start;
-  char ActiveState[50];
+  char Cycle[10];
+  char Step[10];
   char statusstring[512]; // OPTIMIZATION: Fixed size buffer
   char IPAddress[16];     // OPTIMIZATION: Fixed size for IP
 } status_struct;
