@@ -84,8 +84,9 @@ void init_status() {
 }
 
 void run_program() {
+    Program_Entry Program ;
   for (int i = 0; i < NUM_PROGRAMS; i++) {
-    Program_Entry Program = Programs[i];
+    Program = Programs[i];
     if (strcmp(Program.name, ActiveStatus.Program) == 0) {
       _LOG_I("Found Program %s, preparing to run ", Program.name);
       break;
