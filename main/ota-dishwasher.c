@@ -35,11 +35,17 @@ void _init_setup(){
     xTaskCreate(monitor_task_temperature, "monitor_task_temperature", 2048, NULL, 5, NULL); //monitor temperatures
     xTaskCreate(update_published_status, "update_published_status", 2048, NULL, 5, NULL); //publish status
     //xTaskCreate(sample_analog_inputs_task, "sample_analog_inputs_task", 4096, NULL, 5, NULL);
-}
+
+    for (int t=60;t>0;t--){
+        _LOG_I("Waiting for wifi, %d seconds remaining",t);
+        if(is_connected()){  break;  }
+        vTaskDelay(pdMS_TO_TICKS(1000)) ;
+    }
+    };
 void monitor_task_buttons(){}
 void monitor_task_temperature(){}
 void update_published_status(){
-    printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %lld ETA: %lld \nCycle time: %lld Cycle ETA:%lld \nIP: %s",
+    printf("Status update: State: %s/%s \nTemperature: %d \nElapsed Time: %lld ETA: %lld \nCycle time: %lld Cycle ETA:%ll d \nIP: %s",
     ActiveStatus.Cycle,
     ActiveStatus.Step,
     ActiveStatus.CurrentTemp,

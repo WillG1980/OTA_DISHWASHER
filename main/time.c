@@ -3,7 +3,6 @@
 #include "esp_log.h"
 #include "esp_sntp.h"
 
-
 void initialize_sntp_blocking(void)
 {
     ESP_LOGI(TAG, "Initializing SNTP");
