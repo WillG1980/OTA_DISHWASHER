@@ -17,6 +17,7 @@
 #include "dishwasher_programs.h"
 #include "local_ota.c"
 #include "local_wifi.c"
+#include "local_time.h"
 
 #define __TAG__ "OTA_DISHWASHER"
 
