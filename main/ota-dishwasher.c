@@ -18,6 +18,8 @@
 #include "analog.h"
 
 //prototyping functions
+status_struct ActiveStatus;
+
 void monitor_task_buttons();
 void monitor_task_temperature();
 void update_published_status();
@@ -36,6 +38,27 @@ void _init_setup(){
 void monitor_task_buttons(){}
 void monitor_task_temperature(){}
 void update_published_status(){}
+
+typedef struct {
+    
+} status_struct;
+void init_status(){
+    ActiveStatus.CurrentPower=0;
+    ActiveStatus.CurrentTemp=0;
+    ActiveStatus.ActiveState="Off";
+    ActiveStatus.IPAddress="255.255.255.255";
+
+   ActiveStatus.time_full_start=0;
+   ActiveStatus.time_full_total=0;
+   ActiveStatus.time_cycle_start=0;
+   ActiveStatus.time_cycle_total=0;
+   ActiveStatus.time_total=0;
+   ActiveStatus.time_elapsed=0;
+   ActiveStatus.time_start=0;
+  
+
+
+}
 
 
 void app_main(void) {

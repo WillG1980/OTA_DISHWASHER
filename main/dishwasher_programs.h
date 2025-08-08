@@ -144,4 +144,29 @@ static const Program_Entry Programs[NUM_PROGRAMS] = {
     {"Test",   TestProgramLines,   sizeof(TestProgramLines) / sizeof(TestProgramLines[0])},
     {"Hi-Temp",HiTempProgramLines, sizeof(HiTempProgramLines) / sizeof(HiTempProgramLines[0])}
 };
+
+
+typedef struct {
+  int CurrentTemp;
+  int CurrentPower;
+  int64_t time_full_start;
+  int64_t time_full_total;
+
+  int64_t time_cycle_start;
+  int64_t time_cycle_total;
+
+  int64_t time_total;
+  int64_t time_elapsed;
+  int64_t time_start;
+  char ActiveState[50];
+  char statusstring[512]; // OPTIMIZATION: Fixed size buffer
+  char IPAddress[16];     // OPTIMIZATION: Fixed size for IP
+} status_struct;
+void init_status(){
+    
+}
+
+
+
+
 #endif
