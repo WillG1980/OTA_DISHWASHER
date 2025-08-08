@@ -8,44 +8,47 @@
 #define GND_GPIO GPIO_NUM_17
 extern const char *__TAG__;
 
-button_t Buttons={
+button_t Buttons[]={
 {false,GPIO_NUM_16,"Start"},
 {false,GPIO_NUM_17,"Cancel"}
 }
-led_t Leds={
+led_t Leds[]={
   {false,GPIO_NUM_18,"Clean Identifier"},
   {false,GPIO_NUM_19,"Status Identifier"}
 }
-
-
-
-button_t buttons[1];
-
 void init_switchesandleds() {
-  gpio_config_t sw_conf = {
-    .pin_bit_mask = (1ULL << BUTTON_GPIO),
-    .mode = GPIO_MODE_INPUT,
-    .pull_up_en = GPIO_PULLUP_ENABLE,
-    .pull_down_en = GPIO_PULLDOWN_DISABLE,
-    .intr_type = GPIO_INTR_DISABLE};
-  gpio_config(&sw_conf);
+  for (int i = 0; i < sizeof(Buttons) / sizeof(Buttons[0]); i++) {
+    gpio_config_t sw_conf = {
+      .pin_bit_mask = (1ULL << Buttons[i].Pin),
+      .mode = GPIO_MODE_INPUT,
+      .pull_up_en = GPIO_PULLUP_ENABLE,
+      .pull_down_en = GPIO_PULLDOWN_DISABLE,
+      .intr_type = GPIO_INTR_DISABLE
+    };
+    gpio_config(&sw_conf);
+  }
 
-  gpio_config_t led_conf = {
-    .pin_bit_mask = (1ULL << LED_GPIO),
-    .mode = GPIO_MODE_OUTPUT,
-    .pull_up_en = GPIO_PULLUP_DISABLE,
-    .pull_down_en = GPIO_PULLDOWN_DISABLE,
-    .intr_type = GPIO_INTR_DISABLE};
-  gpio_config(&led_conf);
+  for (int i = 0; i < sizeof(Leds) / sizeof(Leds[0]); i++) {
+    gpio_config_t led_conf = {
+      .pin_bit_mask = (1ULL << Leds[i].Pin),
+      .mode = GPIO_MODE_OUTPUT,
+      .pull_up_en = GPIO_PULLUP_DISABLE,
+      .pull_down_en = GPIO_PULLDOWN_DISABLE,
+      .intr_type = GPIO_INTR_DISABLE
+    };
+    gpio_config(&led_conf);
+    gpio_set_level(Leds[i].Pin, 0); // Ensure LEDs start off
+  }
 
+  // Optional: configure a shared GND line if used
   gpio_config_t gnd_conf = {
     .pin_bit_mask = (1ULL << GND_GPIO),
     .mode = GPIO_MODE_OUTPUT,
     .pull_up_en = GPIO_PULLUP_DISABLE,
     .pull_down_en = GPIO_PULLDOWN_DISABLE,
-    .intr_type = GPIO_INTR_DISABLE};
+    .intr_type = GPIO_INTR_DISABLE
+  };
   gpio_config(&gnd_conf);
-
   gpio_set_level(GND_GPIO, 0); // Provide GND ref
 }
 
@@ -55,17 +58,17 @@ void monitor_task_button(void *arg) {
   TickType_t last_change_time = 0;
 
   while (true) {
-    int current_state = gpio_get_level(BUTTON_GPIO);
+    int current_state = gpio_get_level(Buttons[0].Pin);
     TickType_t current_time = xTaskGetTickCount();
 
     if (current_state != last_state) {
       if (current_time - last_change_time > debounce_ticks) {
         if (current_state == 0) {
-          buttons[0].state = BUTTON_PRESSED;
-          gpio_set_level(LED_GPIO, 1);
+          Buttons[0].State = true;
+          gpio_set_level(Leds[0].Pin, 1);
         } else {
-          buttons[0].state = BUTTON_RELEASED;
-          gpio_set_level(LED_GPIO, 0);
+          Buttons[0].State = false;
+          gpio_set_level(Leds[0].Pin, 0);
         }
         last_change_time = current_time;
       }

@@ -34,7 +34,8 @@ static const char *FIRMWARE_URL="https://house.sjcnu.com/esp32/firmware/" OTA_VE
 
 
 typedef struct {
-    const char *state_name;
+    const char *cycle_name;
+    const char *step_name;
     uint32_t    min_time;   // milliseconds
     uint32_t    max_time;   // milliseconds
     int         min_temp;
@@ -50,93 +51,93 @@ typedef struct {
 
 // Normal program
 static const ProgramLineStruct NormalProgramLines[] = {
-    {"init",           1,         0,        0,      0,       0                      },
+    {"init","setup"           1,         0,        0,      0,       0                      },
 
-    {"Prep/fill",      3*MIN,     0,        0,      0,       INLET                   },
-    {"Prep/Spray",     5*MIN,     0,        0,      0,       SPRAY                   },
-    {"Prep/drain",     2*MIN,     0,        0,      0,       DRAIN                   },
+    {"Prep","fill",      3*MIN,     0,        0,      0,       INLET                   },
+    {"Prep","Spray",     5*MIN,     0,        0,      0,       SPRAY                   },
+    {"Prep","drain",     2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"wash/fill",      3*MIN,     0,        0,      0,       INLET                   },
-    {"wash/preheat",   5*MIN,     40*MIN,   130,    140,     HEAT | SPRAY            },//heat water to at _least_ 130
-    {"wash/soap",      1*MIN,     0,        140,    150,     HEAT | SPRAY | SOAP     },
-    {"wash/wash",      45*MIN,    75*MIN,   150,    150,     HEAT | SPRAY            },
-    {"wash/drain",     2*MIN,     0,        0,      0,       DRAIN                   },
+    {"wash","fill",      3*MIN,     0,        0,      0,       INLET                   },
+    {"wash","preheat",   5*MIN,     40*MIN,   130,    140,     HEAT | SPRAY            },//heat water to at _least_ 130
+    {"wash","soap",      1*MIN,     0,        140,    150,     HEAT | SPRAY | SOAP     },
+    {"wash","wash",      45*MIN,    75*MIN,   150,    150,     HEAT | SPRAY            },
+    {"wash","drain",     2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-1/fill",   3*MIN,     0,        0,      0,       INLET                   },
-    {"rinse-1/rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
-    {"rinse-1/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-1","fill",   3*MIN,     0,        0,      0,       INLET                   },
+    {"rinse-1","rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
+    {"rinse-1","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-2/fill",   3*MIN,     0,        0,      0,       INLET                   },
-    {"rinse-2/rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
-    {"rinse-2/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-2","fill",   3*MIN,     0,        0,      0,       INLET                   },
+    {"rinse-2","rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
+    {"rinse-2","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-3/fill",   3*MIN,     0,        0,      0,       INLET                   },
-    {"rinse-3/soap",   1*MIN,     0,        140,    140,     HEAT | DRAIN | SOAP     }, //rinse aid
-    {"rinse-3/rinse",  10*MIN,    20*MIN,   140,    140,     HEAT | SPRAY            },
-    {"rinse-3/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-3","fill",   3*MIN,     0,        0,      0,       INLET                   },
+    {"rinse-3","soap",   1*MIN,     0,        140,    140,     HEAT | DRAIN | SOAP     }, //rinse aid
+    {"rinse-3","rinse",  10*MIN,    20*MIN,   140,    140,     HEAT | SPRAY            },
+    {"rinse-3","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"cool/vent",      29*MIN,    0,        0,      0,       HEAT                    },
-    {"fini",           0,         0,        0,      0,       0                       }
+    {"cool","vent",      29*MIN,    0,        0,      0,       HEAT                    },
+    {"fini","clean"           0,         0,        0,      0,       0                       }
 };
 // Test program: all times 30 seconds, temps copied from Normal
 static const ProgramLineStruct TestProgramLines[] = {
-    {"init",           1,         0,        0,      0,       0                      },
+    {"init","setup"           1,         0,        0,      0,       0                      },
 
-    {"Prep/fill",      30*SEC,    0,        0,      0,       INLET                   },
-    {"Prep/Spray",     30*SEC,    30*SEC,   130,    130,     SPRAY                   },
-    {"Prep/drain",     2*MIN,     0,        0,      0,       DRAIN                   },
+    {"Prep","fill",      30*SEC,    0,        0,      0,       INLET                   },
+    {"Prep","Spray",     30*SEC,    30*SEC,   130,    130,     SPRAY                   },
+    {"Prep","drain",     2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"wash/fill",      30*SEC,    0,        0,      0,       INLET                   },
-    {"wash/preheat",   0,         30*SEC,   130,    130,     HEAT | SPRAY            },
-    {"wash/soap",      30*SEC,    0,        140,    140,     HEAT | SPRAY | SOAP     },
-    {"wash/wash",      30*SEC,    30*SEC,   152,    152,     HEAT | SPRAY            },
-    {"wash/drain",     2*MIN,     0,        0,      0,       DRAIN                   },
+    {"wash","fill",      30*SEC,    0,        0,      0,       INLET                   },
+    {"wash","preheat",   0,         30*SEC,   130,    130,     HEAT | SPRAY            },
+    {"wash","soap",      30*SEC,    0,        140,    140,     HEAT | SPRAY | SOAP     },
+    {"wash","wash",      30*SEC,    30*SEC,   152,    152,     HEAT | SPRAY            },
+    {"wash","drain",     2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-1/fill",   30*SEC,    0,        0,      0,       INLET                   },
-    {"rinse-1/rinse",  30*SEC,    0,        0,      0,       HEAT | SPRAY            },
-    {"rinse-1/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-1","fill",   30*SEC,    0,        0,      0,       INLET                   },
+    {"rinse-1","rinse",  30*SEC,    0,        0,      0,       HEAT | SPRAY            },
+    {"rinse-1","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-2/fill",   30*SEC,    0,        0,      0,       INLET                   },
-    {"rinse-2/rinse",  30*SEC,    0,        0,      0,       HEAT | SPRAY            },
-    {"rinse-2/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-2","fill",   30*SEC,    0,        0,      0,       INLET                   },
+    {"rinse-2","rinse",  30*SEC,    0,        0,      0,       HEAT | SPRAY            },
+    {"rinse-2","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-3/fill",   30*SEC,    0,        0,      0,       INLET                   },
-    {"rinse-3/soap",   30*SEC,    0,        140,    140,     HEAT | DRAIN | SOAP     },
-    {"rinse-3/rinse",  30*SEC,    30*SEC,   140,    140,     HEAT | SPRAY            },
-    {"rinse-3/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-3","fill",   30*SEC,    0,        0,      0,       INLET                   },
+    {"rinse-3","soap",   30*SEC,    0,        140,    140,     HEAT | DRAIN | SOAP     },
+    {"rinse-3","rinse",  30*SEC,    30*SEC,   140,    140,     HEAT | SPRAY            },
+    {"rinse-3","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"cool/vent",      29*MIN,    0,        0,      0,       HEAT                    },
-    {"fini",           0,         0,        0,      0,       0                       }
+    {"cool","vent",      29*MIN,    0,        0,      0,       HEAT                    },
+    {"fini","clean"           0,         0,        0,      0,       0                       }
 };
 // Hi-Temp program: same times as Normal, but all wash temps set to 160
 static const ProgramLineStruct HiTempProgramLines[] = {
-    {"init",           1,         0,        0,      0,       0                      },
+    {"init","setup"           1,         0,        0,      0,       0                      },
 
-    {"Prep/fill",      3*MIN,     0,        0,      0,       INLET                   },
-    {"Prep/Spray",     5*MIN,     0,        0,      0,       SPRAY                   },
-    {"Prep/drain",     2*MIN,     0,        0,      0,       DRAIN                   },
+    {"Prep","fill",      3*MIN,     0,        0,      0,       INLET                   },
+    {"Prep","Spray",     5*MIN,     0,        0,      0,       SPRAY                   },
+    {"Prep","drain",     2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"wash/fill",      3*MIN,     0,        0,      0,       INLET                   },
-    {"wash/preheat",   0,         40*MIN,   160,    160,     HEAT | SPRAY            },
-    {"wash/soap",      1*MIN,     0,        160,    160,     HEAT | SPRAY | SOAP     },
-    {"wash/wash",      45*MIN,    75*MIN,   160,    160,     HEAT | SPRAY            },
-    {"wash/drain",     2*MIN,     0,        0,      0,       DRAIN                   },
+    {"wash","fill",      3*MIN,     0,        0,      0,       INLET                   },
+    {"wash","preheat",   0,         40*MIN,   160,    160,     HEAT | SPRAY            },
+    {"wash","soap",      1*MIN,     0,        160,    160,     HEAT | SPRAY | SOAP     },
+    {"wash","wash",      45*MIN,    75*MIN,   160,    160,     HEAT | SPRAY            },
+    {"wash","drain",     2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-1/fill",   3*MIN,     0,        0,      0,       INLET                   },
-    {"rinse-1/rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
-    {"rinse-1/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-1","fill",   3*MIN,     0,        0,      0,       INLET                   },
+    {"rinse-1","rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
+    {"rinse-1","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-2/fill",   3*MIN,     0,        0,      0,       INLET                   },
-    {"rinse-2/rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
-    {"rinse-2/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-2","fill",   3*MIN,     0,        0,      0,       INLET                   },
+    {"rinse-2","rinse",  5*MIN,     0,        0,      0,       HEAT | SPRAY            },
+    {"rinse-2","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"rinse-3/fill",   3*MIN,     0,        0,      0,       INLET                   },
-    {"rinse-3/soap",   1*MIN,     0,        160,    160,     HEAT | DRAIN | SOAP     },
-    {"rinse-3/rinse",  10*MIN,    20*MIN,   160,    160,     HEAT | SPRAY            },
-    {"rinse-3/drain",  2*MIN,     0,        0,      0,       DRAIN                   },
+    {"rinse-3","fill",   3*MIN,     0,        0,      0,       INLET                   },
+    {"rinse-3","soap",   1*MIN,     0,        160,    160,     HEAT | DRAIN | SOAP     },
+    {"rinse-3","rinse",  10*MIN,    20*MIN,   160,    160,     HEAT | SPRAY            },
+    {"rinse-3","drain",  2*MIN,     0,        0,      0,       DRAIN                   },
 
-    {"cool/vent",      29*MIN,    0,        140,      140,       HEAT                    },
-    {"fini",           0,         0,        0,      0,       0                       }
+    {"cool","vent",      29*MIN,    0,        140,      140,       HEAT                    },
+    {"fini","clean"           0,         0,        0,      0,       0                       }
 };
 
 static const Program_Entry Programs[NUM_PROGRAMS] = {
