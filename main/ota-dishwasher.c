@@ -23,12 +23,14 @@ status_struct ActiveStatus;
 void monitor_task_buttons();
 void monitor_task_temperature();
 void update_published_status();
+void init_status();
+
 
 void _init_setup(){
     wifi_init_sta();
     init_switchesandleds();
     init_adc();
-
+    init_status();
     //setup background monitoring tasks
     xTaskCreate(monitor_task_buttons, "monitor_task_buttons", 2048, NULL, 5, NULL); // monitor buttons, set flags as needed
     xTaskCreate(monitor_task_temperature, "monitor_task_temperature", 2048, NULL, 5, NULL); //monitor temperatures
@@ -48,16 +50,11 @@ void init_status(){
     ActiveStatus.ActiveState="Off";
     ActiveStatus.IPAddress="255.255.255.255";
 
-   ActiveStatus.time_full_start=0;
-   ActiveStatus.time_full_total=0;
-   ActiveStatus.time_cycle_start=0;
-   ActiveStatus.time_cycle_total=0;
-   ActiveStatus.time_total=0;
+   ActiveStatus.time_full_start=0; // time it started
+   ActiveStatus.time_full_total=0; //expected run time
+   ActiveStatus.time_cycle_start=0; //this cycle start time
+   ActiveStatus.time_cycle_total=0; //maximum run time
    ActiveStatus.time_elapsed=0;
-   ActiveStatus.time_start=0;
-  
-
-
 }
 
 
