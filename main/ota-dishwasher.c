@@ -18,7 +18,6 @@
 #include "local_time.h"
 #include "local_wifi.c"
 
-
 #define __TAG__ "OTA_DISHWASHER"
 
 // prototyping functions
@@ -84,7 +83,7 @@ void init_status() {
 }
 
 void run_program() {
-    Program_Entry Program ;
+  Program_Entry Program;
   for (int i = 0; i < NUM_PROGRAMS; i++) {
     Program = Programs[i];
     if (strcmp(Program.name, ActiveStatus.Program) == 0) {
@@ -97,16 +96,14 @@ void run_program() {
     printf("Program Name: %s\n", ActiveStatus.Program);
   }
   ProgramLineStruct Line;
-  int line_count=sizeof(Program) / sizeof(Program[0];
-  for(int l=0;l<(  line_count ),l++)){
-    Line=Program[l];
-  };
-
-while (1) {
-  vTaskDelay(pdMS_TO_TICKS(60 * 60 * 1000));
-};
+    for (size_t l = 0; l < Program.num_lines; l++) {
+    ProgramLineStruct Line = Program.lines[l];
+    // Do something with Line...
 }
-;
+  while (1) {
+    vTaskDelay(pdMS_TO_TICKS(60 * 60 * 1000));
+  };
+};
 
 void app_main(void) {
   ESP_ERROR_CHECK(nvs_flash_init());
