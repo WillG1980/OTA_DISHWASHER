@@ -16,5 +16,5 @@ REM powershell -Command "(Get-Content version.h.in) -replace '@VERSION@', '%VERS
 idf.py build
 set WEB_FIRMWARE "Y:\Apps\Docker\appdata\lamp\web\docroot\www\esp32\firmware\%VERSION%"
 @echo on
-mkdir WEB_FIRMWARE
-copy C:\Projects\esp\OTA_DISHWASHER\build\*.bin  WEB_FIRMWARE
+mkdir %WEB_FIRMWARE%
+copy C:\Projects\esp\OTA_DISHWASHER\build\*.bin  %WEB_FIRMWARE%
