@@ -79,7 +79,7 @@ void init_status() {
   ActiveStatus.time_elapsed = 0;
 }
 
-void run_cycle(char *program) {
+void run_program(char *program) {
   for (int i = 0; i < NUM_PROGRAMS; i++) {
     Program_Entry Program = Programs[i];
     if (strcmp(Program.name, program) == 0) {
