@@ -97,7 +97,8 @@ void run_program() {
     printf("Program Name: %s\n", ActiveStatus.Program);
   }
   ProgramLineStruct Line;
-  for(int l=0;l<(  sizeof(Program) / sizeof(Program[0] ),l++)){
+  int line_count=sizeof(Program) / sizeof(Program[0];
+  for(int l=0;l<(  line_count ),l++)){
     Line=Program[l];
   };
 
