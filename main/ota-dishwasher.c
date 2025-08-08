@@ -95,7 +95,7 @@ void run_program() {
 
     printf("Program Name: %s\n", ActiveStatus.Program);
   }
-  for (ProgramLineStruct Line : Program) {
+  FOREACH (ProgramLineStruct Line,Program) {
   };
 
 while (1) {

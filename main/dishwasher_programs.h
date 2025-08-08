@@ -26,6 +26,12 @@
 #define BIT64(n) (1ULL << (n))
 #endif
 
+
+#define FOREACH(item, array) \
+    for (size_t _i = 0, _count = sizeof(array) / sizeof((array)[0]); \
+         _i < _count && (((item) = (array)[_i]), 1); \
+         _i++)
+
 #define HEAT (BIT64(GPIO_NUM_32))
 #define SPRAY (BIT64(GPIO_NUM_33))
 #define INLET (BIT64(GPIO_NUM_25))
