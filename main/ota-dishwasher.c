@@ -47,8 +47,8 @@ typedef struct {
 void init_status(){
     ActiveStatus.CurrentPower=0;
     ActiveStatus.CurrentTemp=0;
-    serCharArray(ActiveStatus.ActiveState,"Off");
-    serCharArray(ActiveStatus.IPAddress,"255.255.255.255");
+    setCharArray(ActiveStatus.ActiveState,"Off");
+    setCharArray(ActiveStatus.IPAddress,"255.255.255.255");
 
    ActiveStatus.time_full_start=0; // time it started
    ActiveStatus.time_full_total=0; //expected run time
