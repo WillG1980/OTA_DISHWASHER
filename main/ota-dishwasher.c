@@ -118,6 +118,7 @@ void _run_program() {
   printf("Total run time: Min: %lld, Max: %lld",min_time,max_time);
 
   while (1) {
+    printf("In final closeout - power cycle to restart/open door");
     vTaskDelay(pdMS_TO_TICKS(60 * 60 * 1000));
   };
 };
