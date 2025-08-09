@@ -142,8 +142,7 @@ static void run_program(void *pvParameters)
         printf("\tRunning totals: Min: %lld, Max: %lld\n", (long long)min_time, (long long)max_time);
     }
 
-    printf("\nTotal run time for program '%s': Min: %lld ms, Max: %lld ms\n",
-           chosen.name, (long long)min_time, (long long)max_time);
+    printf("\nTotal run time for program '%s': Min: %lld ms, Max: %lld ms\n", chosen.name, (long long)min_time, (long long)max_time);
 
     // TODO: implement actual runtime control of GPIOs, temps, timing, etc.
     // For now block forever (or you could vTaskDelete(NULL) to end the task)

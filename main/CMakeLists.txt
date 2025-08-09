@@ -1,2 +1,9 @@
-idf_component_register(SRCS "local_wifi.c" "local_ota.c" "ota-dishwasher.c"
-                    INCLUDE_DIRS ".")
+idf_component_register(
+    SRCS
+        "ota-dishwasher.c"
+        "buttons.c"
+        "adc.c"
+        "local_wifi.c"
+    INCLUDE_DIRS
+        "."
+)
