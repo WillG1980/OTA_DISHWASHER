@@ -95,12 +95,14 @@ void run_program() {
 
     printf("Program Name: %s\n", ActiveStatus.Program);
   }
-
+int min_time, max_time;
   for (size_t l = 0; l < Program.num_lines; l++) {
     ProgramLineStruct Line = Program.lines[l];
     // Do something with Line...
     printf("\nCycle: %s / %s; Time [ Min %ld Max %ld ]", Line.name_cycle,
            Line.name_step, Line.min_time, Line.max_time);
+           min_time+=Line.min_time;
+           max_time+=Line.max_time;
   }
   while (1) {
     vTaskDelay(pdMS_TO_TICKS(60 * 60 * 1000));
