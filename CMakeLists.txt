@@ -31,7 +31,7 @@ add_compile_definitions(
   OTA_VERSION="${APP_VERSION}"
   VERSION="${GIT_TAG}"
   PROJECT_NAME="${PROJECT_NAME_STR}"
-  TAG="Dishwasher"
+ # TAG="Dishwasher"
 )
 
 project(${PROJECT_NAME_STR})
