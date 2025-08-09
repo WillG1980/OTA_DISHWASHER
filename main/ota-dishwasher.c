@@ -115,10 +115,10 @@ void _run_program() {
     printf("\n%2d: Cycle: %s\t / \t%s; Time [ Min %ld Max %ld ]",l, Line.name_cycle,Line.name_step, Line.min_time, Line.max_time);
     printf("\tTotal run time: Min: %lld, Max: %lld",min_time,max_time);
   }
-  printf("Total run time: Min: %lld, Max: %lld",min_time,max_time);
+  printf("\nTotal run time: Min: %lld, Max: %lld",min_time,max_time);
 
   while (1) {
-    printf("In final closeout - power cycle to restart/open door");
+    printf("\nIn final closeout - power cycle to restart/open door");
     vTaskDelay(pdMS_TO_TICKS(60 * 60 * 1000));
   };
 };
