@@ -171,6 +171,7 @@ void init_status(void)
 // app_main
 void app_main(void)
 {
+    printf("%s",TAG);
     ESP_ERROR_CHECK(nvs_flash_init());
     init_status();
 _init_setup();
