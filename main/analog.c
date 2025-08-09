@@ -7,6 +7,13 @@
 #include <math.h>
 #include <limits.h>
 #include <string.h>
+#include "analog.h"
+#include "buttons.h"
+#include "dishwasher_programs.h"
+#include "local_ota.h"   // <- use headers, not .c
+#include "local_time.h"
+#include "local_wifi.h"  // <- use headers, not .c
+
 
 extern const char *__TAG__;
 extern int get_deviceid_by_name(const char *name);
