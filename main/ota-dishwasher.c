@@ -102,7 +102,7 @@ void _run_program() {
   int64_t max_time=0;
   char *old_cycle=NULL;
 
-  for (size_t l = 0; l < Program.num_lines-1; l++) {
+  for (size_t l = 0; l < Program.num_lines; l++) {
     ProgramLineStruct Line = Program.lines[l];
     // Do something with Line...
     if(strcmp(old_cycle,Line.name_cycle)!=0){

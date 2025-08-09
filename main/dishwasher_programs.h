@@ -80,18 +80,18 @@ static const ProgramLineStruct NormalProgramLines[] = {
     {"wash", "wash", 45 * MIN, 75 * MIN, 150, 150, HEAT | SPRAY},
     {"wash", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-1", "fill", 3 * MIN, 0, 0, 0, INLET},
-    {"rinse-1", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
-    {"rinse-1", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse1", "fill", 3 * MIN, 0, 0, 0, INLET},
+    {"rinse1", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
+    {"rinse1", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-2", "fill", 3 * MIN, 0, 0, 0, INLET},
-    {"rinse-2", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
-    {"rinse-2", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse2", "fill", 3 * MIN, 0, 0, 0, INLET},
+    {"rinse2", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
+    {"rinse2", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-3", "fill", 3 * MIN, 0, 0, 0, INLET},
-    {"rinse-3", "soap", 1 * MIN, 0, 140, 140, HEAT | DRAIN | SOAP}, // rinse aid
-    {"rinse-3", "rinse", 10 * MIN, 20 * MIN, 140, 140, HEAT | SPRAY},
-    {"rinse-3", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse3", "fill", 3 * MIN, 0, 0, 0, INLET},
+    {"rinse3", "soap", 1 * MIN, 0, 140, 140, HEAT | DRAIN | SOAP}, // rinse aid
+    {"rinse3", "rinse", 10 * MIN, 20 * MIN, 140, 140, HEAT | SPRAY},
+    {"rinse3", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
     {"cool", "vent", 29 * MIN, 0, 0, 0, HEAT},
     {"fini", "clean", 0, 0, 0, 0, 0}};
@@ -109,18 +109,18 @@ static const ProgramLineStruct TestProgramLines[] = {
     {"wash", "wash", 30 * SEC, 30 * SEC, 152, 152, HEAT | SPRAY},
     {"wash", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-1", "fill", 30 * SEC, 0, 0, 0, INLET},
-    {"rinse-1", "rinse", 30 * SEC, 0, 0, 0, HEAT | SPRAY},
-    {"rinse-1", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse1", "fill", 30 * SEC, 0, 0, 0, INLET},
+    {"rinse1", "rinse", 30 * SEC, 0, 0, 0, HEAT | SPRAY},
+    {"rinse1", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-2", "fill", 30 * SEC, 0, 0, 0, INLET},
-    {"rinse-2", "rinse", 30 * SEC, 0, 0, 0, HEAT | SPRAY},
-    {"rinse-2", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse2", "fill", 30 * SEC, 0, 0, 0, INLET},
+    {"rinse2", "rinse", 30 * SEC, 0, 0, 0, HEAT | SPRAY},
+    {"rinse2", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-3", "fill", 30 * SEC, 0, 0, 0, INLET},
-    {"rinse-3", "soap", 30 * SEC, 0, 140, 140, HEAT | DRAIN | SOAP},
-    {"rinse-3", "rinse", 30 * SEC, 30 * SEC, 140, 140, HEAT | SPRAY},
-    {"rinse-3", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse3", "fill", 30 * SEC, 0, 0, 0, INLET},
+    {"rinse3", "soap", 30 * SEC, 0, 140, 140, HEAT | DRAIN | SOAP},
+    {"rinse3", "rinse", 30 * SEC, 30 * SEC, 140, 140, HEAT | SPRAY},
+    {"rinse3", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
     {"cool", "vent", 29 * MIN, 0, 0, 0, HEAT},
     {"fini", "clean", 0, 0, 0, 0, 0}
@@ -140,18 +140,18 @@ static const ProgramLineStruct HiTempProgramLines[] = {
     {"wash", "wash", 45 * MIN, 75 * MIN, 160, 160, HEAT | SPRAY},
     {"wash", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-1", "fill", 3 * MIN, 0, 0, 0, INLET},
-    {"rinse-1", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
-    {"rinse-1", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse1", "fill", 3 * MIN, 0, 0, 0, INLET},
+    {"rinse1", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
+    {"rinse1", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-2", "fill", 3 * MIN, 0, 0, 0, INLET},
-    {"rinse-2", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
-    {"rinse-2", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse2", "fill", 3 * MIN, 0, 0, 0, INLET},
+    {"rinse2", "rinse", 5 * MIN, 0, 0, 0, HEAT | SPRAY},
+    {"rinse2", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
-    {"rinse-3", "fill", 3 * MIN, 0, 0, 0, INLET},
-    {"rinse-3", "soap", 1 * MIN, 0, 160, 160, HEAT | DRAIN | SOAP},
-    {"rinse-3", "rinse", 10 * MIN, 20 * MIN, 160, 160, HEAT | SPRAY},
-    {"rinse-3", "drain", 2 * MIN, 0, 0, 0, DRAIN},
+    {"rinse3", "fill", 3 * MIN, 0, 0, 0, INLET},
+    {"rinse3", "soap", 1 * MIN, 0, 160, 160, HEAT | DRAIN | SOAP},
+    {"rinse3", "rinse", 10 * MIN, 20 * MIN, 160, 160, HEAT | SPRAY},
+    {"rinse3", "drain", 2 * MIN, 0, 0, 0, DRAIN},
 
     {"cool", "vent", 29 * MIN, 0, 140, 140, HEAT},
     {"fini", "clean", 0, 0, 0, 0, 0}};
