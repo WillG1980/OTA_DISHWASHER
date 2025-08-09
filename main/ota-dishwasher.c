@@ -33,7 +33,7 @@ static void monitor_task_temperature(void *pvParameters);
 static void update_published_status(void *pvParameters);
 static void run_program(void *pvParameters);
 static void _init_setup(void);
-
+static void init_status();
 // ----- implementations -----
 
 static void _init_setup(void)
