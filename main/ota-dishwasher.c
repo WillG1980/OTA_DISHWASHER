@@ -1,10 +1,12 @@
 // main.c
 #ifndef PROJECT_NAME
- #define PROJECT_NAME "OTA-Dishwasher";
+ #define PROJECT_NAME "OTA-Dishwasher"
 #endif
 
-static const char *TAG = PROJECT_NAME;
 #define __TAG__ PROJECT_NAME
+
+static const char *TAG = PROJECT_NAME;
+
 
 #include "driver/gpio.h"
 #include "esp_crt_bundle.h"
