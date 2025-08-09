@@ -136,7 +136,7 @@ static void run_program(void *pvParameters)
         // if max_time = 0 treat as min_time (as your design did)
         max_time += (long long)((Line->max_time > 0) ? Line->max_time : Line->min_time);
 
-        printf("%02zu: Cycle: %s / %s; Time [ Min %u Max %u ]  GPIO mask: 0x%llx\n",
+        printf("%02zu: Cycle: %s / %s; Time [ Min %lu Max %lu ]  GPIO mask: 0x%llx\n",
                l, Line->name_cycle, Line->name_step,
                Line->min_time, Line->max_time, (unsigned long long)Line->gpio_mask);
         printf("\tRunning totals: Min: %lld, Max: %lld\n", (long long)min_time, (long long)max_time);
