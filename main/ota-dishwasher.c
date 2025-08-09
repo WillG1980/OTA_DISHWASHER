@@ -174,7 +174,7 @@ void app_main(void)
     ESP_ERROR_CHECK(nvs_flash_init());
     init_status();
 _init_setup();
-    ESP_LOGI(____, "Version: %s \nFirmware Update: %s\n", VERSION, FIRMWARE_URL);
+    ESP_LOGI(__TAG__, "Version: %s \nFirmware Update: %s\n", VERSION, FIRMWARE_URL);
 
     printf("\nTotal program count: %d\n", NUM_PROGRAMS);
     for (int i = 0; i < NUM_PROGRAMS; i++) {
