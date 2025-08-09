@@ -4,6 +4,15 @@
 #include "esp_sntp.h"
 #include "dishwasher_programs.h"
 
+#ifndef PROJECT_NAME
+ #define PROJECT_NAME "OTA-Dishwasher"
+#endif
+#ifndef __TAG__
+#define __TAG__ PROJECT_NAME
+#endif
+
+static const char *TAG = PROJECT_NAME;
+
 void initialize_sntp_blocking(void)
 {
     ESP_LOGI(__TAG__, "Initializing SNTP");

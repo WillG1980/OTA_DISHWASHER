@@ -7,7 +7,6 @@
 
 static const char *TAG = PROJECT_NAME;
 
-
 #include "driver/gpio.h"
 #include "esp_crt_bundle.h"
 #include "esp_err.h"
