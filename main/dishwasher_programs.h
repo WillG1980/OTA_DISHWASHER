@@ -49,6 +49,10 @@ static const char *FIRMWARE_URL =
     "https://house.sjcnu.com/esp32/firmware/" OTA_VERSION "/" PROJECT_NAME
     ".bin";
 
+
+
+
+
 typedef struct {
   const char *name_cycle;
   const char *name_step;
@@ -187,5 +191,6 @@ typedef struct {
   char statusstring[512]; // OPTIMIZATION: Fixed size buffer
   char IPAddress[16];     // OPTIMIZATION: Fixed size for IP
   char Program[10];
+  bool HEAT_REQUESTED;
 } status_struct;
 #endif
