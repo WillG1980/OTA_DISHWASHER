@@ -113,6 +113,7 @@ void _run_program() {
     printf("\n%2d: Cycle: %s / %s; Time [ Min %ld Max %ld ]",l, Line.name_cycle,Line.name_step, Line.min_time, Line.max_time);
     min_time += Line.min_time;
     max_time += Line.max_time;
+    printf("\n\tTotal run time: Min: %lld, Max: %lld",min_time,max_time);
   }
   printf("Total run time: Min: %lld, Max: %lld",min_time,max_time);
 
