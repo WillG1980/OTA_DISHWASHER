@@ -104,7 +104,7 @@ void run_program() {
         printf("\n--");
     }
     old_cycle=Line.name_cycle;    
-    printf("\nCycle: %s / %s; Time [ Min %ld Max %ld ]", Line.name_cycle,
+    printf("\nCycle: %s / %s; Time [ Min %lld Max %lld ]", Line.name_cycle,
            Line.name_step, Line.min_time, Line.max_time);
     min_time += Line.min_time;
     max_time += Line.max_time;
