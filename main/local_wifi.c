@@ -22,11 +22,11 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
-        ESP_LOGW(TAG, "Disconnected. Reconnecting...");
+        ESP_LOGW(__TAG__, "Disconnected. Reconnecting...");
         esp_wifi_connect();
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
-        ESP_LOGI(TAG, "Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
+        ESP_LOGI(__TAG__, "Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
     }
 }
@@ -45,14 +45,14 @@ static bool try_connect_wifi(const char *ssid, const char *pass) {
     esp_wifi_set_config(WIFI_IF_STA, &wifi_config);
     esp_wifi_start();
 
-    ESP_LOGI(TAG, "Connecting to SSID: %s", ssid);
+    ESP_LOGI(__TAG__, "Connecting to SSID: %s", ssid);
     EventBits_t bits = xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdTRUE, WIFI_FAIL_TIMEOUT);
 
     if (bits & WIFI_CONNECTED_BIT) {
-        ESP_LOGI(TAG, "Connected to WiFi: %s", ssid);
+        ESP_LOGI(__TAG__, "Connected to WiFi: %s", ssid);
         return true;
     } else {
-        ESP_LOGW(TAG, "Connection to SSID %s failed", ssid);
+        ESP_LOGW(__TAG__, "Connection to SSID %s failed", ssid);
         return false;
     }
 }
@@ -78,7 +78,7 @@ void wifi_init_sta(void) {
         using_simulator = false;  // fallback completely failed
     }
 
-    ESP_LOGI(TAG, "WiFi init completed");
+    ESP_LOGI(__TAG__, "WiFi init completed");
 }
 
 bool is_connected(void) {
