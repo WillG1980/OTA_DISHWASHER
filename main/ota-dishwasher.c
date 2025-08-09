@@ -41,7 +41,7 @@ static void _init_setup(void)
     // initialize subsystems (these functions should be provided by their modules)
     wifi_init_sta();
     init_switchesandleds();
-    init_adc();
+//init_adc();
     init_status();
 
     // create background monitoring tasks (use reasonable stack sizes)
