@@ -1,3 +1,4 @@
+//currently not building
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
 #include "esp_wifi.h"
@@ -80,7 +81,6 @@ void wifi_init_sta(void) {
 
     ESP_LOGI(__TAG__, "WiFi init completed");
 }
-
 bool is_connected(void) {
     wifi_ap_record_t ap_info;
     esp_err_t err = esp_wifi_sta_get_ap_info(&ap_info);
