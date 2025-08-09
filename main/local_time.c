@@ -3,6 +3,7 @@
 #include "esp_log.h"
 #include "esp_sntp.h"
 #include "dishwasher_programs.h"
+
 void initialize_sntp_blocking(void)
 {
     ESP_LOGI(TAG, "Initializing SNTP");

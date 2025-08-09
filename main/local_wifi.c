@@ -14,8 +14,6 @@
 #define WIFI_SSID_WOKWI "Wokwi-GUEST"
 #define WIFI_PASS_WOKWI ""
 
-extern const char *TAG;
-
 static EventGroupHandle_t wifi_event_group;
 static bool using_simulator = false;
 
