@@ -81,8 +81,11 @@ void init_status() {
   ActiveStatus.time_cycle_total = 0; // maximum run time
   ActiveStatus.time_elapsed = 0;
 }
-
+void _run_program();
 void run_program() {
+    _run_program();
+}
+void _run_program() {
   Program_Entry Program;
   for (int i = 0; i < NUM_PROGRAMS; i++) {
     Program = Programs[i];
@@ -105,6 +108,7 @@ void run_program() {
     if(strcmp(old_cycle,Line.name_cycle)!=0){
         printf("\n--");
     }
+    
     old_cycle=Line.name_cycle;    
     printf("\n%2d: Cycle: %s / %s; Time [ Min %ld Max %ld ]",l, Line.name_cycle,Line.name_step, Line.min_time, Line.max_time);
     min_time += Line.min_time;
