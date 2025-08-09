@@ -1,13 +1,10 @@
 // main.c
-
-#ifdef PROJECT_NAME
-    static const char *TAG = PROJECT_NAME;
-    #define __TAG__ PROJECT_NAME; 
-    #endif
 #ifndef PROJECT_NAME
-    static const char *TAG = "OTA-Dishwasher";
-    #define __TAG__ "OTA-Dishwasher"; 
+ #define PROJECT_NAME "OTA-Dishwasher";
 #endif
+
+static const char *TAG = PROJECT_NAME;
+#define __TAG__ PROJECT_NAME; 
 
 #include "driver/gpio.h"
 #include "esp_crt_bundle.h"
@@ -189,7 +186,7 @@ void app_main(void)
     printf("%s",TAG);
     ESP_ERROR_CHECK(nvs_flash_init());
     init_status();
-_init_setup();
+    _init_setup();
     ESP_LOGI(__TAG__, "Version: %s \nFirmware Update: %s\n", VERSION, FIRMWARE_URL);
 
     printf("\nTotal program count: %d\n", NUM_PROGRAMS);

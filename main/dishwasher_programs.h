@@ -44,14 +44,7 @@
 
 #define NUM_DEVICES 8
 
-static const char *TAG = PROJECT_NAME;
-static const char *FIRMWARE_URL =
-    "https://house.sjcnu.com/esp32/firmware/" OTA_VERSION "/" PROJECT_NAME
-    ".bin";
-
-
-
-
+static const char *FIRMWARE_URL = "https://house.sjcnu.com/esp32/firmware/" OTA_VERSION "/" PROJECT_NAME ".bin";
 
 typedef struct {
   const char *name_cycle;
