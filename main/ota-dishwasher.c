@@ -109,7 +109,7 @@ void run_program() {
     min_time += Line.min_time;
     max_time += Line.max_time;
   }
-  printf("Total run time: Min: %ld, Max: %ld",min_time,max_time);
+  printf("Total run time: Min: %lld, Max: %lld",min_time,max_time);
 
   while (1) {
     vTaskDelay(pdMS_TO_TICKS(60 * 60 * 1000));
