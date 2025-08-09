@@ -11,11 +11,11 @@ extern const char *__TAG__;
 button_t Buttons[]={
 {false,GPIO_NUM_16,"Start"},
 {false,GPIO_NUM_17,"Cancel"}
-}
+};
 led_t Leds[]={
   {false,GPIO_NUM_18,"Clean Identifier"},
   {false,GPIO_NUM_19,"Status Identifier"}
-}
+};
 void init_switchesandleds() {
   for (int i = 0; i < sizeof(Buttons) / sizeof(Buttons[0]); i++) {
     gpio_config_t sw_conf = {
