@@ -6,7 +6,7 @@
 
 void initialize_sntp_blocking(void)
 {
-    ESP_LOGI(TAG, "Initializing SNTP");
+    ESP_LOGI(__TAG__, "Initializing SNTP");
     sntp_setoperatingmode(SNTP_OPMODE_POLL);
     sntp_setservername(0, "pool.ntp.org");
     sntp_init();
@@ -18,16 +18,16 @@ void initialize_sntp_blocking(void)
     const int max_retries = 30;
 
     while (timeinfo.tm_year < (2016 - 1900) && ++retry < max_retries) {
-        ESP_LOGI(TAG, "Waiting for system time to be set... (%d/%d)", retry, max_retries);
+        ESP_LOGI(__TAG__, "Waiting for system time to be set... (%d/%d)", retry, max_retries);
         vTaskDelay(pdMS_TO_TICKS(1000));
         time(&now);
         localtime_r(&now, &timeinfo);
     }
 
     if (timeinfo.tm_year >= (2016 - 1900)) {
-        ESP_LOGI(TAG, "Time synchronized successfully.");
+        ESP_LOGI(__TAG__, "Time synchronized successfully.");
     } else {
-        ESP_LOGW(TAG, "Time synchronization failed after %d seconds.", max_retries);
+        ESP_LOGW(__TAG__, "Time synchronization failed after %d seconds.", max_retries);
     }
 }
 
@@ -47,7 +47,7 @@ void print_us_time(void)
     localtime_r(&now, &timeinfo);
 
     if (timeinfo.tm_year < (2016 - 1900)) {
-        ESP_LOGW(TAG, "Time not set. Call initialize_sntp_blocking() first.");
+        ESP_LOGW(__TAG__, "Time not set. Call initialize_sntp_blocking() first.");
         return;
     }
 
@@ -61,7 +61,7 @@ void print_us_time(void)
         if (hour == 0) hour = 12;
     }
 
-    ESP_LOGI(TAG, "Current time: %02d/%02d/%04d %02d:%02d:%02d %s",
+    ESP_LOGI(__TAG__, "Current time: %02d/%02d/%04d %02d:%02d:%02d %s",
              timeinfo.tm_mon + 1,
              timeinfo.tm_mday,
              timeinfo.tm_year + 1900,
