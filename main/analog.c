@@ -15,16 +15,6 @@
 #include "local_wifi.h"  // <- use headers, not .c
 
 
-extern const char *__TAG__;
-extern int get_deviceid_by_name(const char *name);
-extern bool toggle_device(const char *name);
-extern void _LOG_I(const char *fmt, ...);
-extern void _LOG_W(const char *fmt, ...);
-extern void _LOG_E(const char *fmt, ...);
-extern struct status_struct status;
-extern const char *dev_name[];
-extern bool REQUIRED_HEAT;
-
 #define ADC_ATTEN ADC_ATTEN_DB_11
 #define ADC_BIT_WIDTH ADC_BITWIDTH_12
 #define ADC_CHANNEL_7 ADC_CHANNEL_7
