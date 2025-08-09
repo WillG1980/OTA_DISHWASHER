@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "analog.h"
+//#include "analog.h"
 #include "buttons.h"
 #include "dishwasher_programs.h"
 #include "local_ota.h"   // <- use headers, not .c

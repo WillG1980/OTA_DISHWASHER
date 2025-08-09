@@ -57,7 +57,7 @@ float convert_adc_to_fahrenheit(int adc_val) {
 
 void temp_monitor_task(void *arg) {
   while (true) {
-    if (REQUIRED_HEAT && (status.CurrentTemp < LOW_LIMIT || status.CurrentTemp > _HIGH_LIMIT)) {
+    if (ActiveStatus.HEAT_REQUESTED && (ActiveStatus.CurrentTemp < LOW_LIMIT || ActiveStatus.CurrentTemp > _HIGH_LIMIT)) {
       _LOG_W("Temp %d out of range (%d-%d). Toggling device %s",
              status.CurrentTemp, LOW_LIMIT, _HIGH_LIMIT, dev_name[0]);
 
