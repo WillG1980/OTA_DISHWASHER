@@ -99,7 +99,7 @@ void run_program() {
     for (size_t l = 0; l < Program.num_lines; l++) {
     ProgramLineStruct Line = Program.lines[l];
     // Do something with Line...
-    printf("Cycle: %s / %s; Time [ Min %ld Max %ld ]",Line.name_cycle,Line.name_step,Line.min_time,Line.max_time);
+    printf("\nCycle: %s / %s; Time [ Min %ld Max %ld ]",Line.name_cycle,Line.name_step,Line.min_time,Line.max_time);
 
 }
   while (1) {
