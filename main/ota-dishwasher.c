@@ -95,7 +95,7 @@ void run_program() {
 
     printf("Program Name: %s\n", ActiveStatus.Program);
   }
-  int min_time=0, max_time=0;
+  int64_t min_time=0, max_time=0;
   char *old_cycle=NULL;
   for (size_t l = 0; l < Program.num_lines; l++) {
     ProgramLineStruct Line = Program.lines[l];
