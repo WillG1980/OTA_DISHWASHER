@@ -29,13 +29,6 @@ static const char *TAG = PROJECT_NAME;
 #include "local_time.h"
 #include "local_wifi.h"  // <- use headers, not .c
 
-#ifdef PROJECT_NAME
-    static const char *TAG = PROJECT_NAME;
-#endif
-#ifndef PROJECT_NAME
-    static const char *TAG = "OTA-Dishwasher";
-#endif
-
 
 // global status
 status_struct ActiveStatus;
