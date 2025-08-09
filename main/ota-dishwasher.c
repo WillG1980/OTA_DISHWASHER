@@ -1,4 +1,14 @@
 // main.c
+
+#ifdef PROJECT_NAME
+    static const char *TAG = PROJECT_NAME;
+    #define __TAG__ PROJECT_NAME; 
+    #endif
+#ifndef PROJECT_NAME
+    static const char *TAG = "OTA-Dishwasher";
+    #define __TAG__ "OTA-Dishwasher"; 
+#endif
+
 #include "driver/gpio.h"
 #include "esp_crt_bundle.h"
 #include "esp_err.h"
@@ -22,8 +32,13 @@
 #include "local_time.h"
 #include "local_wifi.h"  // <- use headers, not .c
 
-#define __TAG__ "OTA_DISHWASHER"
-static const char TAG = __TAG__;
+#ifdef PROJECT_NAME
+    static const char *TAG = PROJECT_NAME;
+#endif
+#ifndef PROJECT_NAME
+    static const char *TAG = "OTA-Dishwasher";
+#endif
+
 
 // global status
 status_struct ActiveStatus;
