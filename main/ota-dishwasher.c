@@ -23,6 +23,7 @@
 #include "local_wifi.h"  // <- use headers, not .c
 
 #define __TAG__ "OTA_DISHWASHER"
+static const TAG = __TAG__;
 
 // global status
 status_struct ActiveStatus;
