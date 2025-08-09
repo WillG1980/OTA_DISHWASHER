@@ -4,7 +4,7 @@
 #endif
 
 static const char *TAG = PROJECT_NAME;
-#define __TAG__ PROJECT_NAME; 
+#define __TAG__ PROJECT_NAME
 
 #include "driver/gpio.h"
 #include "esp_crt_bundle.h"
