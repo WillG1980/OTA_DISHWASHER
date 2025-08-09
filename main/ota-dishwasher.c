@@ -25,11 +25,12 @@ static const char *TAG = PROJECT_NAME;
 #include <stdlib.h>
 
 //#include "analog.h"
-#include "buttons.h"
 #include "dishwasher_programs.h"
-#include "local_ota.h"   // <- use headers, not .c
+
+#include "buttons.h"
+#include "local_ota.h"  
 #include "local_time.h"
-#include "local_wifi.h"  // <- use headers, not .c
+#include "local_wifi.h" 
 
 
 // global status
